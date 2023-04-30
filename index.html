@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AcessibileAlgoritm</title>
+<style>
+  /* Estilo do balão de chat para a pergunta */
+  p {
+    background-color: #D1FFD1;
+    border-radius: 5px;
+    border:1px solid Gray;
+    padding: 10px;
+    display: inline-block;
+  }
+
+  /* Estilo do balão de chat para o botão Enviar */
+  button:nth-of-type(1) {
+    background-color: #F6F6F6;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  /* Estilo do balão de chat para o botão Limpar */
+  button:nth-of-type(2){
+background-color: #F6F6F6;
+    border:none;
+    border-radius: 10px;
+    padding: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    position:absolute;
+    
+  }
+
+  /* Estilo do balão de chat para a resposta */
+  #resultado {
+    background-color:#CFFFD0;
+    border-radius: 5px;
+    padding: 10px;
+    position:absolute;
+    top:130px;left:8px;
+  }
+
+  /* Estilo do textarea */
+  #chat {
+    display: block;
+    
+    bottom:50px;
+  }
+</style>
+
+</head>
+
+<body>
+  <h1 style=font-family:Arial;>Chat Algorithm</h1>
+  <p>Digite seu salário:</p><br><br><br>
+  <textarea id="chat"></textarea>
+  <button onclick="imprimirNumero()">Enviar</button>
+  <button onclick="limparValores()">Limpar</button>
+  <p id="resultado"></p>
+  <script>
+    let numero1;
+    let numero2;
+    let soma = 0;
+
+    function imprimirNumero() {
+      // Obtém o número digitado no textarea
+      let chat = document.getElementById("chat").value;
+     
+      // Substitui o ponto por uma vírgula
+      chat = parseFloat(chat.replace(".", ""));
+
+     
+      // Converte o número para inteiro
+      chat = parseFloat(chat);
+     
+      // Se o número é válido, faz a verificação
+      if (!isNaN(chat)) {
+        if (numero1 === undefined) {
+          numero1 = chat;
+          document.getElementById("resultado").innerHTML = "Digite o percentual de reajuste:";
+        } else if (numero2 === undefined) {
+          numero2 = chat;
+    
+         soma = numero1 + (numero1 * (numero2 / 100));
+         document.getElementById("resultado").innerHTML = "Seu novo salário é:R$ " + soma.toFixed(2);
+        }
+      }
+    }
+    
+    function limparValores() {
+      numero1 = undefined;
+      numero2 = undefined;
+      soma = 0;
+      document.getElementById("chat").value = "";
+      document.getElementById("resultado").innerHTML = "";
+    }
+  </script>
+</body>
+</html>
